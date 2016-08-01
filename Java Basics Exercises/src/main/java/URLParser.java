@@ -1,7 +1,6 @@
-/*
 import java.util.Scanner;
 
-class URLParser
+public class URLParser
 {
     public static void main(String[] args) {
 
@@ -11,36 +10,34 @@ class URLParser
 
         if (text.contains("://"))
         {
-            System.out.println("[protocol] = " + text.substring(0, text.indexOf("://")));
-            server = (text.substring(text.lastIndexOf("://")).remove(0, 3));
+            System.out.println("[protocol] = " + "\"" + text.substring(0, text.indexOf("://")) + "\"");
+            server = (text.substring(text.lastIndexOf("://")).replace("://", ""));
 
-            if ((text.Substring(text.LastIndexOf("://")).Remove(0, 3)).Contains("/"))
+            if ((text.substring(text.lastIndexOf("://")).replace("://", "")).contains("/"))
             {
-                Console.WriteLine("[server] = \"{0}\"", (text.Substring(text.LastIndexOf("://")).Remove(0, 3)).Substring(0, server.IndexOf("/")));
-                Console.WriteLine("[resource] = \"{0}\"", (text.Substring(text.LastIndexOf("://")).Remove(0, 3)).Substring(server.IndexOf("/") + 1));
+                System.out.println("[server] = " + "\"" + (text.substring(text.lastIndexOf("://")).replace("://", "")).substring(0, server.indexOf("/")) + "\"");
+                System.out.println("[resource] = " + "\"" + (text.substring(text.lastIndexOf("://")).replace("://", "")).substring(server.indexOf("/") + 1) + "\"");
             }
             else
             {
-                Console.WriteLine("[server] = \"{0}\"", text.Substring(text.LastIndexOf("://")).Remove(0, 3));
-                Console.WriteLine("[resource] = \"{0}\"", "");
+                System.out.println("[server] = " + "\"" + text.substring(text.lastIndexOf("://")).replace("://", "") + "\"");
+                System.out.println("[resource] = " + "\"" + "" + "\"");
             }
         }
         else
         {
-            if (text.Contains("/"))
+            if (text.contains("/"))
             {
-                Console.WriteLine("[protocol] = \"{0}\"", "");
-                Console.WriteLine("[server] = \"{0}\"", server = text.Substring(0, text.IndexOf("/")));
-                Console.WriteLine("[resource] = \"{0}\"", "");
+                System.out.println("[protocol] = " + "\"" + "" + "\"");
+                System.out.println("[server] = " + "\"" + text.substring(0, text.indexOf("/")) + "\"");
+                System.out.println("[resource] = " + "\"" + "" + "\"");
             }
             else
             {
-                Console.WriteLine("[protocol] = \"{0}\"", "");
-                Console.WriteLine("[server] = \"{0}\"", text);
-                Console.WriteLine("[resource] = \"{0}\"", "");
+                System.out.println("[protocol] = " + "\"" + "" + "\"");
+                System.out.println("[server] = " + "\"" + text + "\"");
+                System.out.println("[resource] = " + "\"" + "" + "\"");
             }
         }
     }
 }
-}
-*/

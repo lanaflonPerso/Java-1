@@ -8,7 +8,7 @@ import java.text.*;
 public class BookLibraryModification {
     public static void main(String[] args) {
 
-        Scanner scanner = new Scanner(System.in).useDelimiter("\n");
+        Scanner scanner = new Scanner(System.in).useDelimiter("\r\n");
         int num = scanner.nextInt();
         List<Book> library = new ArrayList<Book>();
         SimpleDateFormat sdfmt = new SimpleDateFormat("dd.M.yyyy");
@@ -40,7 +40,7 @@ public class BookLibraryModification {
                 if(book.ReleaseDate.compareTo(date)>0) {
                     System.out.print(book.Title);
                     System.out.printf("%s %te.%<tm.%<tY",
-                            " -> ", book.ReleaseDate);
+                            " ->", book.ReleaseDate);
                     System.out.println();
                 }
             }

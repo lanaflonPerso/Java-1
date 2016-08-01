@@ -3,7 +3,7 @@ import java.util.*;
 
 public class AverageGrades {
     public static void main(String[] args) {
-        Scanner scanner = new Scanner(System.in).useDelimiter("\n");
+        Scanner scanner = new Scanner(System.in).useDelimiter("\r\n");
         int num = scanner.nextInt();
 
         List<Student> allData = new ArrayList<>();

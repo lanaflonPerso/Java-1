@@ -2,6 +2,7 @@ import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -15,17 +16,19 @@ import static java.time.LocalDate.parse;
 public class CountWorkingDays {
     public static void main(String[] args) {
 
-            Scanner scanner = new Scanner(System.in);
+        Scanner scanner = new Scanner(System.in);
 
-            String first = scanner.nextLine();
-            String second = scanner.nextLine();
+        String first = scanner.nextLine();
+        String second = scanner.nextLine();
 
-            LocalDate firstDate = parse(first);
-            LocalDate secondDate = parse(second);
+        DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("dd-M-yyyy");
 
-            int counterHolidays = GetWorkingDays(firstDate, secondDate);
+        LocalDate firstDate = LocalDate.parse(first, dateTimeFormatter);
+        LocalDate secondDate = LocalDate.parse(second, dateTimeFormatter);
 
-            System.out.println(counterHolidays);
+        int counterHolidays = GetWorkingDays(firstDate, secondDate);
+
+        System.out.println(counterHolidays);
 
     }
     private static int GetWorkingDays(LocalDate firstDate, LocalDate secondDate)
@@ -49,9 +52,9 @@ public class CountWorkingDays {
 
         int counterHolidays = 0;
 
-        for (LocalDate i = firstDate; i.isBefore(secondDate); i.plusDays(1))
+        for (LocalDate i = firstDate; i.isBefore(secondDate) || i.isEqual(secondDate); i = i.plusDays(1))
         {
-            if (!(holidayDates.contains(i) || i.getDayOfWeek().toString() == "Saturday" || i.getDayOfWeek().toString() == "Sunday"))
+            if (!(holidayDates.contains(i) || i.getDayOfWeek().toString().equals("SATURDAY") || i.getDayOfWeek().toString().equals("SUNDAY") ))
             {
                 counterHolidays++;
             }
