@@ -1,6 +1,7 @@
 import java.util.*;
 
 /**
+Dobavka
  * Created by Hristo on 30.07.2016 г..
  */
 public class AdvertisementMessage {
