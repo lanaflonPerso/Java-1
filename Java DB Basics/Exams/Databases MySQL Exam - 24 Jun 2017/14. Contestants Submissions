@@ -1,0 +1,11 @@
+SELECT cn.id, cn.name, COUNT(s.id) submissions
+  FROM contests AS cn
+ INNER JOIN problems AS p
+    ON cn.id = p.contest_id
+ INNER JOIN users_contests AS uc
+    ON cn.id = uc.contest_id
+ INNER JOIN submissions AS s
+    ON p.id = s.problem_id
+   AND s.user_id = uc.user_id
+ GROUP BY cn.id, cn.name
+ ORDER BY submissions DESC, cn.id
