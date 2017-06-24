@@ -1,0 +1,11 @@
+UPDATE problems AS p
+ INNER JOIN contests AS cn
+    ON p.contest_id = cn.id
+ INNER JOIN categories AS c
+    ON cn.category_id = c.id
+   SET p.tests = (CASE p.id % 3
+                  WHEN 0 THEN CHAR_LENGTH(c.name)
+                  WHEN 1 THEN (SELECT sum(s.id) FROM submissions AS s WHERE s.problem_id = p.id)
+                  WHEN 2 THEN CHAR_LENGTH(cn.name)
+                  END)
+ WHERE p.tests = 0;

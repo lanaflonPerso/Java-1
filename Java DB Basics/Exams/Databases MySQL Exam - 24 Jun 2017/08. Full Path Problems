@@ -1,0 +1,7 @@
+SELECT p.id, CONCAT_WS(' - ', c.name, cn.name, p.name) AS full_path
+  FROM problems AS p
+ INNER JOIN contests AS cn
+    ON p.contest_id = cn.id
+ INNER JOIN categories AS c
+    ON cn.category_id = c.id
+ ORDER BY p.id;

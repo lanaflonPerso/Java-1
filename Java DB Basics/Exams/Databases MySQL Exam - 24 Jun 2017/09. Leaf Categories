@@ -1,0 +1,6 @@
+SELECT c.id, c.name
+  FROM categories AS c
+ WHERE c.id NOT IN (SELECT DISTINCT c1.parent_id
+                      FROM categories c1
+                     WHERE c1.parent_id IS NOT NULL)
+ ORDER BY c.name, c.id;

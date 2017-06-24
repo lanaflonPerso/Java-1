@@ -1,0 +1,24 @@
+DELIMITER $$
+CREATE TRIGGER tr_check_constraints
+BEFORE INSERT
+ON problems
+FOR EACH ROW
+BEGIN
+
+  IF (INSTR(NEW.name, ' ') <= 0) THEN
+    BEGIN
+      SIGNAL SQLSTATE '45000' SET MESSAGE_TEXT = 'The given name is invalid!';
+    END;
+  ELSEIF (NEW.points <= 0) THEN
+    BEGIN
+      SIGNAL SQLSTATE '45000' SET MESSAGE_TEXT = 'The problem’s points cannot be less or equal to 0!';
+    END;
+  ELSEIF (NEW.tests <= 0) THEN
+    BEGIN
+      SIGNAL SQLSTATE '45000' SET MESSAGE_TEXT = 'The problem’s tests cannot be less or equal to 0!';
+    END;
+  END IF;
+
+END $$
+
+DELIMITER ;
