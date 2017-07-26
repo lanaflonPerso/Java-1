@@ -1,0 +1,23 @@
+<component name="libraryTable">
+  <library name="asm-6">
+    <CLASSES />
+    <JAVADOC>
+      <root url="file://$USER_HOME$/Desktop/asm-6.0_ALPHA/doc/javadoc/user" />
+    </JAVADOC>
+    <SOURCES>
+      <root url="file://$USER_HOME$/Desktop/asm-6.0_ALPHA/examples/adapt/src" />
+      <root url="file://$USER_HOME$/Desktop/asm-6.0_ALPHA/examples/analysis/src" />
+      <root url="file://$USER_HOME$/Desktop/asm-6.0_ALPHA/examples/annotations/src" />
+      <root url="file://$USER_HOME$/Desktop/asm-6.0_ALPHA/examples/attributes/src" />
+      <root url="file://$USER_HOME$/Desktop/asm-6.0_ALPHA/examples/compile-indy/src" />
+      <root url="file://$USER_HOME$/Desktop/asm-6.0_ALPHA/examples/compile/src" />
+      <root url="file://$USER_HOME$/Desktop/asm-6.0_ALPHA/examples/dependencies/src" />
+      <root url="file://$USER_HOME$/Desktop/asm-6.0_ALPHA/examples/helloworld/src" />
+      <root url="file://$USER_HOME$/Desktop/asm-6.0_ALPHA/examples/jasmin/src" />
+      <root url="file://$USER_HOME$/Desktop/asm-6.0_ALPHA/examples/jasmin/test" />
+      <root url="file://$USER_HOME$/Desktop/asm-6.0_ALPHA/examples/jbfc/src" />
+      <root url="file://$USER_HOME$/Desktop/asm-6.0_ALPHA" />
+    </SOURCES>
+    <jarDirectory url="file://$USER_HOME$/Desktop/asm-6.0_ALPHA" recursive="false" type="SOURCES" />
+  </library>
+</component>

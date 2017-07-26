@@ -1,0 +1,10 @@
+<component name="libraryTable">
+  <library name="java">
+    <CLASSES />
+    <JAVADOC />
+    <SOURCES>
+      <root url="file://$USER_HOME$/Desktop/Java-Runtime-Compiler-master/compiler/src/main/java" />
+      <root url="file://$USER_HOME$/Desktop/Java-Runtime-Compiler-master/compiler/src/test/java" />
+    </SOURCES>
+  </library>
+</component>
