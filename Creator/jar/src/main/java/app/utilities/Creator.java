@@ -1,6 +1,5 @@
 package app.utilities;
 
-import app.Main;
 import app.enums.StrategyType;
 import app.factories.StrategyFactory;
 import app.strategies.CreateStrategy;
@@ -25,7 +24,7 @@ public final class Creator {
     }
 
     @SuppressWarnings("unchecked")
-    public static void create(StrategyType strategyType, Class<Main> mainClass) {
+    public static void create(StrategyType strategyType, Class<?> mainClass) {
         String springBootApplicationFilePackage = mainClass.getPackage().getName().replace(".", "\\");
         String springBootApplicationFilePath = ROOT_PATH + springBootApplicationFilePackage;
 

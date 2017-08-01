@@ -10,6 +10,7 @@ public final class ClassTemplates {
             "import %4$s;\n" +
             "import %3$s.repositories.%1$sRepository;\n" +
             "import org.springframework.beans.factory.annotation.Autowired;\n" +
+            "import org.springframework.data.jpa.repository.Modifying;\n" +
             "import org.springframework.stereotype.Service;\n" +
             "import org.springframework.transaction.annotation.Transactional;\n" +
             "\n" +
@@ -57,8 +58,15 @@ public final class ClassTemplates {
             "    }\n" +
             "\n" +
             "    @Override\n" +
+			"    @Modifying\n" +
             "    public void deleteById(long id) {\n" +
             "        this.%2$sRepository.delete(id);\n" +
+            "    }\n" +
+            "\n" +
+			"    @Override\n" +
+			"    @Modifying\n" +
+            "    public void deleteBy%1$s(%1$s %2$s) {\n" +
+            "        this.%2$sRepository.delete(%2$s);\n" +
             "    }\n" +
             "\n" +
             "}";
@@ -84,6 +92,8 @@ public final class ClassTemplates {
             "    List<%3$s> updateMany(Iterable<%3$s> %4$ss);\n" +
             "\n" +
             "    void deleteById(long id);\n" +
+			"\n" +
+            "    void deleteBy%3$s(%3$s %4$s);\n" +
             "}";
 
     public static final String REPOSITORY_INTERFACE_TEMPLATE = "package %1$s.repositories;\n" +
