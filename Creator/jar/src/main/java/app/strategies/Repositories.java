@@ -12,31 +12,34 @@ import static app.constants.ClassTemplates.REPOSITORY_INTERFACE_TEMPLATE;
  */
 public class Repositories extends BaseCreateStrategy {
     @Override
-    public void execute(List<Class<?>> classes, String springBootApplicationFilePackageName) throws IOException {
-        createRepositories(classes, springBootApplicationFilePackageName);
+    public void execute(List<Class<?>> classes, String destinationPackagePath) throws IOException {
+        createRepositories(classes, destinationPackagePath);
     }
 
-    private static void createRepositories(List<Class<?>> files, String springBootApplicationFilePackageName) throws IOException {
-        File directoryRepository = new File(ROOT_PATH + springBootApplicationFilePackageName + "\\repositories");
-        if (!directoryRepository.exists()) {
-            boolean hasDirectoryRepository = directoryRepository.mkdir();
+    private static void createRepositories(List<Class<?>> files, String destinationPackagePath) throws IOException {
+        File file = new File(destinationPackagePath + File.separator + "repositories");
+        if (!file.exists()) {
+            file.mkdirs();
         }
 
         for (Class<?> clazz : files) {
-            createRepositoryInterfaces(clazz, directoryRepository.getPath());
+            createRepositoryInterfaces(clazz, file.getPath());
         }
     }
 
     private static void createRepositoryInterfaces(Class<?> clazz, String path) throws IOException {
-        File repository = new File(path + "\\" + clazz.getSimpleName() + "Repository.java");
+        File repository = new File(path + File.separator + clazz.getSimpleName() + "Repository.java");
         if (repository.exists()) {
             return;
         }
-        boolean hasFile = repository.createNewFile();
+        repository.createNewFile();
 
         try (PrintWriter printWriter = new PrintWriter(repository)) {
 
-            printWriter.println(String.format(REPOSITORY_INTERFACE_TEMPLATE, getPackage(clazz.getName()), clazz.getName(), clazz.getSimpleName()));
+            printWriter.println(String.format(REPOSITORY_INTERFACE_TEMPLATE,
+                    getPackage(repository),
+                    clazz.getName(),
+                    clazz.getSimpleName()));
 
         } catch (Exception e) {
             e.printStackTrace();

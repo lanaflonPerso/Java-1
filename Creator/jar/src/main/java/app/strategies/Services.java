@@ -14,14 +14,14 @@ import static app.constants.ClassTemplates.SERVICE_INTERFACE_TEMPLATE;
 public class Services extends BaseCreateStrategy implements CreateStrategy {
 
     @Override
-    public void execute(List<Class<?>> classes, String springBootApplicationFilePackageName) throws IOException {
-        createServices(classes, springBootApplicationFilePackageName);
+    public void execute(List<Class<?>> classes, String destinationPackagePath) throws IOException {
+        createServices(classes, destinationPackagePath);
     }
 
-    private static void createServices(List<Class<?>> files, String springBootApplicationFilePackageName) throws IOException {
-        File directoryService = new File(ROOT_PATH + springBootApplicationFilePackageName + "\\services");
+    private static void createServices(List<Class<?>> files, String destinationPackagePath) throws IOException {
+        File directoryService = new File(destinationPackagePath + File.separator + "services");
         if (!directoryService.exists()) {
-            boolean hasDirectoryService = directoryService.mkdir();
+            directoryService.mkdirs();
         }
 
         for (Class<?> clazz : files) {
@@ -31,15 +31,19 @@ public class Services extends BaseCreateStrategy implements CreateStrategy {
     }
 
     private static void createServiceImplementation(Class<?> clazz, String path) throws IOException {
-        File service = new File(path + "\\" + clazz.getSimpleName() +  "ServiceImpl.java");
+        File service = new File(path + File.separator + clazz.getSimpleName() + "ServiceImpl.java");
         if (service.exists()) {
             return;
         }
-        boolean hasFile = service.createNewFile();
+        service.createNewFile();
 
-        try(PrintWriter printWriter = new PrintWriter (service)) {
-
-            printWriter.println(String.format(SERVICE_IMPLEMENTATION_TEMPLATE, clazz.getSimpleName(), String.valueOf(clazz.getSimpleName().charAt(0)).toLowerCase() + clazz.getSimpleName().substring(1), getPackage(clazz.getName()), clazz.getName()));
+        try (PrintWriter printWriter = new PrintWriter(service)) {
+            printWriter.println(String.format(SERVICE_IMPLEMENTATION_TEMPLATE,
+                    clazz.getSimpleName(),
+                    String.valueOf(clazz.getSimpleName().charAt(0)).toLowerCase() + clazz.getSimpleName().substring(1),
+                    getPackage(service),
+                    clazz.getName(),
+                    getPackage(service.getParentFile())));
 
         } catch (Exception e) {
             e.printStackTrace();
@@ -47,15 +51,19 @@ public class Services extends BaseCreateStrategy implements CreateStrategy {
     }
 
     private static void createServiceInterfaces(Class<?> clazz, String path) throws IOException {
-        File service = new File(path + "\\" + clazz.getSimpleName() +  "Service.java");
+        File service = new File(path + File.separator + clazz.getSimpleName() + "Service.java");
         if (service.exists()) {
             return;
         }
-        boolean hasFile = service.createNewFile();
+        service.createNewFile();
 
-        try(PrintWriter printWriter = new PrintWriter (service)) {
+        try (PrintWriter printWriter = new PrintWriter(service)) {
 
-            printWriter.println(String.format(SERVICE_INTERFACE_TEMPLATE, getPackage(clazz.getName()), clazz.getName(), clazz.getSimpleName(), clazz.getSimpleName().toLowerCase()));
+            printWriter.println(String.format(SERVICE_INTERFACE_TEMPLATE,
+                    getPackage(service),
+                    clazz.getName(),
+                    clazz.getSimpleName(),
+                    clazz.getSimpleName().toLowerCase()));
 
         } catch (Exception e) {
             e.printStackTrace();

@@ -5,10 +5,10 @@ package app.constants;
  */
 public final class ClassTemplates {
 
-    public static final String SERVICE_IMPLEMENTATION_TEMPLATE = "package %3$s.services;\n" +
+    public static final String SERVICE_IMPLEMENTATION_TEMPLATE = "package %3$s;\n" +
             "\n" +
             "import %4$s;\n" +
-            "import %3$s.repositories.%1$sRepository;\n" +
+            "import %5$s.repositories.%1$sRepository;\n" +
             "import org.springframework.beans.factory.annotation.Autowired;\n" +
             "import org.springframework.data.jpa.repository.Modifying;\n" +
             "import org.springframework.stereotype.Service;\n" +
@@ -71,7 +71,7 @@ public final class ClassTemplates {
             "\n" +
             "}";
 
-    public static final String SERVICE_INTERFACE_TEMPLATE = "package %1$s.services;\n" +
+    public static final String SERVICE_INTERFACE_TEMPLATE = "package %1$s;\n" +
             "\n" +
             "import %2$s;\n" +
             "\n" +
@@ -96,7 +96,7 @@ public final class ClassTemplates {
             "    void deleteBy%3$s(%3$s %4$s);\n" +
             "}";
 
-    public static final String REPOSITORY_INTERFACE_TEMPLATE = "package %1$s.repositories;\n" +
+    public static final String REPOSITORY_INTERFACE_TEMPLATE = "package %1$s;\n" +
             "\n" +
             "import %2$s;\n" +
             "import org.springframework.data.jpa.repository.JpaRepository;\n" +
@@ -106,25 +106,28 @@ public final class ClassTemplates {
             "public interface %3$sRepository extends JpaRepository<%3$s, Long> {\n" +
             "}";
 
-    public static final String APPLICATION_PROPERTIES_TEMPLATE = "#Data Source Properties\n" +
-            "spring.datasource.driverClassName = com.mysql.jdbc.Driver\n" +
-            "spring.datasource.url =jdbc:mysql://localhost:3306/<DATABASE NAME>?useSSL=false&createDatabaseIfNotExist=true\n" +
-            "spring.datasource.username = <USER>\n" +
-            "spring.datasource.password = <PASS>\n" +
+    public static final String CONTROLLER_TEMPLATE = "package %1$s;\n" +
             "\n" +
-            "#JPA Properties\n" +
-            "spring.jpa.properties.hibernate.dialect = org.hibernate.dialect.MySQL5InnoDBDialect\n" +
-            "spring.jpa.properties.hibernate.format_sql = TRUE\n" +
-            "spring.jpa.hibernate.ddl-auto = update\n" +
+            "import org.springframework.beans.factory.annotation.Autowired;\n" +
+            "import org.springframework.beans.factory.annotation.Qualifier;\n" +
+            "import org.springframework.stereotype.Controller;\n" +
+            "import %2$s.serializers.Serializer;\n" +
+            "import %2$s.services.%3$sService;\n" +
             "\n" +
-            "###Logging Levels\n" +
-            "# Disable the default loggers\n" +
-            "logging.level.org = WARN\n" +
-            "logging.level.blog = WARN\n" +
+            "@Controller\n" +
+            "public class %3$sController {\n" +
             "\n" +
-            "#Show SQL executed with parameter bindings\n" +
-            "logging.level.org.hibernate.SQL = DEBUG\n" +
-            "logging.level.org.hibernate.type.descriptor = TRACE";
+            "    private final Serializer jsonSerializer;\n" +
+            "    private final Serializer xmlSerializer;\n" +
+            "    private final %3$sService %4$sService;\n" +
+            "\n" +
+            "    @Autowired\n" +
+            "    public %3$sController(@Qualifier(\"json\") Serializer jsonSerializer, @Qualifier(\"xml\") Serializer xmlSerializer, %3$sService %4$sService) {\n" +
+            "        this.jsonSerializer = jsonSerializer;\n" +
+            "        this.xmlSerializer = xmlSerializer;\n" +
+            "        this.%4$sService = %4$sService;\n" +
+            "    }\n" +
+            "}";
 
     private ClassTemplates() {}
 }

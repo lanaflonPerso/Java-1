@@ -6,7 +6,8 @@ package app.enums;
 public enum StrategyType {
     REPOSITORIES_AND_SERVICES,
     SERVICES,
-    REPOSITORIES;
+    REPOSITORIES,
+    CONTROLLERS;
 
     @Override
     public String toString() {

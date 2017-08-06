@@ -11,8 +11,6 @@ import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
 import java.util.List;
 
-import static app.strategies.CreateStrategy.ROOT_PATH;
-
 /**
  * Created by Hristo Skipernov on 18/05/2017.
  */
@@ -24,17 +22,15 @@ public final class Creator {
     }
 
     @SuppressWarnings("unchecked")
-    public static void create(StrategyType strategyType, Class<?> mainClass) {
-        String springBootApplicationFilePackage = mainClass.getPackage().getName().replace(".", "\\");
-        String springBootApplicationFilePath = ROOT_PATH + springBootApplicationFilePackage;
+    public static void create(StrategyType strategyType, String entitiesPackagePath, String destinationPackagePath) {
 
         List<Class<?>> files = new ArrayList();
 
         try {
-            List<Class<?>> classes = getFilesClasses(new File(springBootApplicationFilePath).listFiles(), files);
+            List<Class<?>> classes = getFilesClasses(new File(entitiesPackagePath).listFiles(), files);
             String strategyClassPath = STRATEGY_PATH + strategyType.toString();
             CreateStrategy strategy = StrategyFactory.getStrategy(strategyClassPath);
-            strategy.execute(classes, springBootApplicationFilePackage);
+            strategy.execute(classes, destinationPackagePath);
 
         } catch (IOException | ClassNotFoundException | NoSuchMethodException | InstantiationException | IllegalAccessException | InvocationTargetException e) {
             e.printStackTrace();
