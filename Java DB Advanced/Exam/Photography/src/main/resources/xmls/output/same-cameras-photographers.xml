@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="utf-8"?>
+<photographers>
+    <photographer name="Delorse Bunge"/>
+    <photographer name="Amparo Goers"/>
+    <photographer name="Camaru Kolya"/>
+    <photographer name="Rosalie Ragsdale"/>
+    <photographer name="Oma Wechsler">
+        <lenses>
+            <lens>Nikon 70mm f4.0</lens>
+        </lenses>
+    </photographer>
+    <photographer name="Fidel Sato"/>
+    <photographer name="Azucena Stclaire"/>
+    <photographer name="Danny Nethery">
+        <lenses>
+            <lens>Tokina 14mm f2.0</lens>
+        </lenses>
+    </photographer>
+    <photographer name="Wilfredo Finnegan"/>
+    <photographer name="Allyson Gayman">
+        <lenses>
+            <lens>Tamron 30mm f2.8</lens>
+        </lenses>
+        <lenses>
+            <lens>Tokina 200mm f2.8</lens>
+        </lenses>
+    </photographer>
+    <photographer name="Joane Claflin">
+        <lenses>
+            <lens>Sigma 16mm f2.0</lens>
+        </lenses>
+        <lenses>
+            <lens>Sigma 135mm f2.8</lens>
+        </lenses>
+    </photographer>
+    <photographer name="Betsey Oconner"/>
+    <photographer name="Cheri Regina">
+        <lenses>
+            <lens>Sigma 40mm f1.8</lens>
+        </lenses>
+    </photographer>
+    <photographer name="Tashia Lunsford">
+        <lenses>
+            <lens>Pentax 15mm f2.8</lens>
+        </lenses>
+    </photographer>
+    <photographer name="Adria Mcquire">
+        <lenses>
+            <lens>Nikon 40mm f4.0</lens>
+        </lenses>
+        <lenses>
+            <lens>Nikon 200mm f5.6</lens>
+        </lenses>
+    </photographer>
+    <photographer name="Kirstin Whidbee">
+        <lenses>
+            <lens>Pentax 200mm f2.8</lens>
+        </lenses>
+        <lenses>
+            <lens>Pentax 30mm f2.8</lens>
+        </lenses>
+        <lenses>
+            <lens>Pentax 200mm f4.0</lens>
+        </lenses>
+        <lenses>
+            <lens>Tokina 100mm f1.2</lens>
+        </lenses>
+    </photographer>
+    <photographer name="Leota Eastep">
+        <lenses>
+            <lens>Nikon 40mm f2.0</lens>
+        </lenses>
+    </photographer>
+    <photographer name="Helena Cahn">
+        <lenses>
+            <lens>Canon 10mm f3.5</lens>
+        </lenses>
+        <lenses>
+            <lens>Canon 10mm f3.5</lens>
+        </lenses>
+        <lenses>
+            <lens>Tokina 14mm f2.0</lens>
+        </lenses>
+        <lenses>
+            <lens>Canon 135mm f1.4</lens>
+        </lenses>
+        <lenses>
+            <lens>Canon 8mm f1.2</lens>
+        </lenses>
+        <lenses>
+            <lens>Canon 85mm f4.0</lens>
+        </lenses>
+        <lenses>
+            <lens>Canon 350mm f1.4</lens>
+        </lenses>
+    </photographer>
+</photographers>
