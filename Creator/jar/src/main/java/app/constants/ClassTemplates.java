@@ -9,6 +9,7 @@ public final class ClassTemplates {
             "\n" +
             "import %4$s;\n" +
             "import %5$s.repositories.%1$sRepository;\n" +
+            "import %5$s.utilities.MapperConverter;\n" +
             "import org.springframework.beans.factory.annotation.Autowired;\n" +
             "import org.springframework.data.jpa.repository.Modifying;\n" +
             "import org.springframework.stereotype.Service;\n" +
@@ -21,10 +22,12 @@ public final class ClassTemplates {
             "public class %1$sServiceImpl implements %1$sService {\n" +
             "\n" +
             "    private final %1$sRepository %2$sRepository;\n" +
+            "    private final MapperConverter mapperConverter;\n" +
             "\n" +
             "    @Autowired\n" +
-            "    public %1$sServiceImpl(%1$sRepository %2$sRepository) {\n" +
+            "    public %1$sServiceImpl(%1$sRepository %2$sRepository, MapperConverter mapperConverter) {\n" +
             "        this.%2$sRepository = %2$sRepository;\n" +
+            "        this.mapperConverter = mapperConverter;\n" +
             "    }\n" +
             "\n" +
             "    @Override\n" +
@@ -58,13 +61,13 @@ public final class ClassTemplates {
             "    }\n" +
             "\n" +
             "    @Override\n" +
-			"    @Modifying\n" +
+            "    @Modifying\n" +
             "    public void deleteById(long id) {\n" +
             "        this.%2$sRepository.delete(id);\n" +
             "    }\n" +
             "\n" +
-			"    @Override\n" +
-			"    @Modifying\n" +
+            "    @Override\n" +
+            "    @Modifying\n" +
             "    public void deleteBy%1$s(%1$s %2$s) {\n" +
             "        this.%2$sRepository.delete(%2$s);\n" +
             "    }\n" +
@@ -92,7 +95,7 @@ public final class ClassTemplates {
             "    List<%3$s> updateMany(Iterable<%3$s> %4$ss);\n" +
             "\n" +
             "    void deleteById(long id);\n" +
-			"\n" +
+            "\n" +
             "    void deleteBy%3$s(%3$s %4$s);\n" +
             "}";
 
@@ -111,23 +114,28 @@ public final class ClassTemplates {
             "import org.springframework.beans.factory.annotation.Autowired;\n" +
             "import org.springframework.beans.factory.annotation.Qualifier;\n" +
             "import org.springframework.stereotype.Controller;\n" +
+            "import %2$s.io.Writer;\n" +
             "import %2$s.serializers.Serializer;\n" +
             "import %2$s.services.%3$sService;\n" +
             "\n" +
             "@Controller\n" +
             "public class %3$sController {\n" +
+            "    private static final String _JSON_INPUT_PATH = \"/jsons/input/....\";\n" +
             "\n" +
             "    private final Serializer jsonSerializer;\n" +
             "    private final Serializer xmlSerializer;\n" +
             "    private final %3$sService %4$sService;\n" +
+            "    private final Writer writer;\n" +
             "\n" +
             "    @Autowired\n" +
-            "    public %3$sController(@Qualifier(\"json\") Serializer jsonSerializer, @Qualifier(\"xml\") Serializer xmlSerializer, %3$sService %4$sService) {\n" +
+            "    public %3$sController(@Qualifier(\"json\") Serializer jsonSerializer, @Qualifier(\"xml\") Serializer xmlSerializer, %3$sService %4$sService, Writer writer) {\n" +
             "        this.jsonSerializer = jsonSerializer;\n" +
             "        this.xmlSerializer = xmlSerializer;\n" +
             "        this.%4$sService = %4$sService;\n" +
+            "        this.writer = writer;\n" +
             "    }\n" +
             "}";
 
-    private ClassTemplates() {}
+    private ClassTemplates() {
+    }
 }
