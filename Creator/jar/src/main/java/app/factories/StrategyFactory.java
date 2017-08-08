@@ -23,6 +23,9 @@ public final class StrategyFactory {
 
     public static List<CreateStrategy> getStrategies(String multipleStrategyName, String strategyClassPath) throws IllegalAccessException, InvocationTargetException, InstantiationException, ClassNotFoundException, NoSuchMethodException {
         String[] strategiesNames = multipleStrategyName.split("And");
+        if (strategiesNames[0].equals("Exam")) {
+            strategiesNames = new String[]{"ControllersExam", "Repositories", "ServicesExam"};
+        }
         List<CreateStrategy> strategies = new ArrayList<>();
         for (String strategiesName : strategiesNames) {
             Class<CreateStrategy> classStrategy = (Class<CreateStrategy>) Class.forName(strategyClassPath + "." +  strategiesName);

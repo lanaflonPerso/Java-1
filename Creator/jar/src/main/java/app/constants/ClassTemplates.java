@@ -9,7 +9,6 @@ public final class ClassTemplates {
             "\n" +
             "import %4$s;\n" +
             "import %5$s.repositories.%1$sRepository;\n" +
-            "import %5$s.utilities.MapperConverter;\n" +
             "import org.springframework.beans.factory.annotation.Autowired;\n" +
             "import org.springframework.data.jpa.repository.Modifying;\n" +
             "import org.springframework.stereotype.Service;\n" +
@@ -22,12 +21,10 @@ public final class ClassTemplates {
             "public class %1$sServiceImpl implements %1$sService {\n" +
             "\n" +
             "    private final %1$sRepository %2$sRepository;\n" +
-            "    private final MapperConverter mapperConverter;\n" +
             "\n" +
             "    @Autowired\n" +
-            "    public %1$sServiceImpl(%1$sRepository %2$sRepository, MapperConverter mapperConverter) {\n" +
+            "    public %1$sServiceImpl(%1$sRepository %2$sRepository) {\n" +
             "        this.%2$sRepository = %2$sRepository;\n" +
-            "        this.mapperConverter = mapperConverter;\n" +
             "    }\n" +
             "\n" +
             "    @Override\n" +
@@ -74,6 +71,43 @@ public final class ClassTemplates {
             "\n" +
             "}";
 
+    public static final String SERVICE_IMPLEMENTATION_TEMPLATE_DB_ADVANCED_EXAM = "package %3$s;\n" +
+            "\n" +
+            "import %4$s;\n" +
+            "import %5$s.repositories.%1$sRepository;\n" +
+            "import %5$s.utilities.MapperConverter;\n" +
+            "import org.springframework.beans.factory.annotation.Autowired;\n" +
+            "import org.springframework.data.jpa.repository.Modifying;\n" +
+            "import org.springframework.stereotype.Service;\n" +
+            "import org.springframework.transaction.annotation.Transactional;\n" +
+            "\n" +
+            "import java.util.List;\n" +
+            "\n" +
+            "@Transactional\n" +
+            "@Service\n" +
+            "public class %1$sServiceImpl implements %1$sService {\n" +
+            "\n" +
+            "    private final %1$sRepository %2$sRepository;\n" +
+            "    private final MapperConverter mapperConverter;\n" +
+            "\n" +
+            "    @Autowired\n" +
+            "    public %1$sServiceImpl(%1$sRepository %2$sRepository, MapperConverter mapperConverter) {\n" +
+            "        this.%2$sRepository = %2$sRepository;\n" +
+            "        this.mapperConverter = mapperConverter;\n" +
+            "    }\n" +
+            "\n" +
+            "    @Override\n" +
+            "    public %1$s createOne(%1$s %2$s) {\n" +
+            "        return this.%2$sRepository.save(%2$s);\n" +
+            "    }\n" +
+            "\n" +
+            "    @Override\n" +
+            "    public List<%1$s> createMany(Iterable<%1$s> %2$ss) {\n" +
+            "        return this.%2$sRepository.save(%2$ss);\n" +
+            "    }\n" +
+            "\n" +
+            "}";
+
     public static final String SERVICE_INTERFACE_TEMPLATE = "package %1$s;\n" +
             "\n" +
             "import %2$s;\n" +
@@ -99,6 +133,20 @@ public final class ClassTemplates {
             "    void deleteBy%3$s(%3$s %4$s);\n" +
             "}";
 
+    public static final String SERVICE_INTERFACE_TEMPLATE_DB_ADVANCED_EXAM = "package %1$s;\n" +
+            "\n" +
+            "import %2$s;\n" +
+            "\n" +
+            "import java.util.List;\n" +
+            "\n" +
+            "public interface %3$sService {\n" +
+            "\n" +
+            "    %3$s createOne(%3$s %4$s);\n" +
+            "\n" +
+            "    List<%3$s> createMany(Iterable<%3$s> %4$ss);\n" +
+            "\n" +
+            "}";
+
     public static final String REPOSITORY_INTERFACE_TEMPLATE = "package %1$s;\n" +
             "\n" +
             "import %2$s;\n" +
@@ -110,6 +158,26 @@ public final class ClassTemplates {
             "}";
 
     public static final String CONTROLLER_TEMPLATE = "package %1$s;\n" +
+            "\n" +
+            "import org.springframework.beans.factory.annotation.Autowired;\n" +
+            "import org.springframework.beans.factory.annotation.Qualifier;\n" +
+            "import org.springframework.stereotype.Controller;\n" +
+            "import %2$s.io.Writer;\n" +
+            "import %2$s.serializers.Serializer;\n" +
+            "import %2$s.services.%3$sService;\n" +
+            "\n" +
+            "@Controller\n" +
+            "public class %3$sController {\n" +
+            "\n" +
+            "    private final %3$sService %4$sService;\n" +
+            "\n" +
+            "    @Autowired\n" +
+            "    public %3$sController(%3$sService %4$sService) {\n" +
+            "        this.%4$sService = %4$sService;\n" +
+            "    }\n" +
+            "}";
+
+    public static final String CONTROLLER_TEMPLATE_DB_ADVANCED_EXAM = "package %1$s;\n" +
             "\n" +
             "import org.springframework.beans.factory.annotation.Autowired;\n" +
             "import org.springframework.beans.factory.annotation.Qualifier;\n" +

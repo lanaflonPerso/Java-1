@@ -7,7 +7,10 @@ public enum StrategyType {
     REPOSITORIES_AND_SERVICES,
     SERVICES,
     REPOSITORIES,
-    CONTROLLERS;
+    CONTROLLERS,
+    CONTROLLERS_EXAM,
+    SERVICES_EXAM,
+    EXAM;
 
     @Override
     public String toString() {
