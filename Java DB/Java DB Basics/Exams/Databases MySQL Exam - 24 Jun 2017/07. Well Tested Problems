@@ -1,5 +1,0 @@
-SELECT p.id, p.name, p.tests
-  FROM problems AS p
- WHERE p.tests > p.points
-   AND INSTR(p.name, ' ') > 0
- ORDER BY p.id DESC;
